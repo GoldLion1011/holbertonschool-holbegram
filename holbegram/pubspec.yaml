@@ -78,10 +78,10 @@ flutter:
   # https://flutter.dev/assets-and-images/#from-packages
 
   fonts:
-  - family: Billabong
+    - family: Billabong
       fonts:
         - asset: assets/fonts/Billabong.ttf
-        - asset: assets/fonts/InstagramSans.ttf
+        # - asset: assets/fonts/InstagramSans.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
