@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextFieldInput extends StatelessWidget {
-  final TextEditingController controller;
-  final bool isPassword;
-  final String hintText;
-  final Widget? suffixIcon;
-  final TextInputType keyboardType;
+  TextEditingController controller =  TextEditingController();
 
-  TextFieldInput({
-    required this.controller,
-    this.isPassword = false,
-    required this.hintText,
-    this.suffixIcon,
-    required this.keyboardType,
-  });
+  late bool isPassword;
+  late String hintText;
+  Widget? suffixIcon;
+  late TextInputType keyboardType;
+  TextFieldInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +17,16 @@ class TextFieldInput extends StatelessWidget {
       cursorColor: Color.fromARGB(218, 226, 37, 24),
       decoration: InputDecoration(
         hintText: hintText,
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(0),
+        border: const OutlineInputBorder(
+          borderSide:  BorderSide(color: Colors.transparent),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(0),
+        focusedBorder:const OutlineInputBorder(
+          borderSide:  BorderSide(color: Colors.transparent),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(0),
+        enabledBorder: const OutlineInputBorder(
+          borderSide:  BorderSide(color: Colors.transparent),
         ),
-        filled: true,
+        filled:true,
         contentPadding: EdgeInsets.all(8),
         suffixIcon: suffixIcon,
       ),
@@ -44,3 +35,4 @@ class TextFieldInput extends StatelessWidget {
     );
   }
 }
+

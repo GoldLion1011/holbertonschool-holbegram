@@ -77,11 +77,11 @@ flutter:
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-  fonts:
-    - family: Billabong
-      fonts:
-        - asset: assets/fonts/Billabong.ttf
-        # - asset: assets/fonts/InstagramSans.ttf
+fonts:
+  - family: Billabong
+    fonts:
+      - asset: assets/fonts/Billabong.ttf
+      - asset: assets/fonts/InstagramSans.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
