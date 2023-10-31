@@ -1,167 +1,223 @@
 import 'package:flutter/material.dart';
-// import 'signup_screen.dart';
 import 'package:holbegram/widgets/text_field.dart';
+import 'package:holbegram/screens/signup_screen.dart';
 
+//ignore: must_be_immutable
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  bool passwordVisible;
+
+  LoginScreen({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+    this.passwordVisible = true,
+  });
+  
+  get usernameController => null;
+  
+  get passwordConfirmController => null;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  bool _passwordVisible = true;
   @override
-  void dispose() {
-    // TODO: implement dispose
+  void dispose(){
+    widget.emailController.dispose();
+    widget.passwordController.dispose();
     super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
+  initState() {
+    widget.passwordVisible;
     super.initState();
-    _passwordVisible;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 28,
-            ),
-            Text(
-              'Holbegram',
-              style: TextStyle(fontFamily:'Billabong', fontSize: 50),
-            ),
-            Image.asset(
-              'img.png',
-              width: 80,
-              height: 60,
-            ),
-            Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 28,
+              ),
+              const Text(
+                'Holbegram',
+                style: TextStyle(
+                  fontFamily: "Billabong",
+                  fontSize: 50,
                 ),
+              ),
+              const Image(
+                image: AssetImage('assets/images/holb-logo.webp'),
+                width: 80,
+                height: 60,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    TextFieldInput(),
-                  ],
-                )),
-
-            SizedBox(
-              height: 28,
-            ),
-            TextField(
-              controller: emailController,
-            obscureText: false,
-            decoration: InputDecoration(
-              hintText: "Email",
-            ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-
-            SizedBox(height: 24,
-            ),
-
-            TextField(controller:
-            passwordController,
-              obscureText: !_passwordVisible,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                suffixIcon: IconButton(
-                  alignment: Alignment.bottomLeft,
-                  icon: _passwordVisible ? Icon(Icons.visibility) : Icon(Icons.visibility_off),
-                  onPressed: () {
-                    setState(() {
-                      _passwordVisible = !_passwordVisible;
-                    });
-                    },
-                ),
-              ),
-              keyboardType: TextInputType.visiblePassword,
-            ),
-
-            SizedBox(height: 28
-              ,),
-
-            SizedBox(height: 48,
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color.fromARGB(218, 226, 37, 24),
-                  ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Log in',
-                  style: TextStyle(color: Colors.white,),
-                ),
-              ),
-            ),
-            SizedBox(height: 24,),
-            Row(mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                    'Log in'
-                ),
-                Text(
-                  'get helpe logging in ',
-                  style: TextStyle(fontWeight: FontWeight.bold,
-                  ),
-                )
-              ],
-            ),
-            Flexible(flex: 0,
-              child: Container(),
-            ),
-
-            SizedBox(height: 24,),
-            Divider(thickness: 2,),
-            Padding(padding: EdgeInsets.symmetric(vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text("Don't have  an account"),
-                  TextButton(onPressed: () {},
-                    child: Text("Sign up",
-                      style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(218, 226, 37, 24)),
+                    const SizedBox(
+                      height: 28,
                     ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 10,),
-            Row(children: [
-              Flexible(child:Container(),
-              ),
-              Divider(thickness: 2,
-              ),
-              Text("OR",
-              style: TextStyle(fontSize: 20),
-              ),
-              Flexible(child:Container(),
-              ),
-              Divider(thickness: 2,
-              ),
-            ],),
-
-            SizedBox(height: 10,),
-            Row(mainAxisSize:MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center,children: [
-              Image.network('https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png')
-            ],)
-          ],
-        ),
-      ),
+                    const SizedBox(
+                      height: 28,
+                    ),
+                    TextFieldInput(
+                        controller: widget.emailController,
+                        ispassword: false,
+                        hintText: 'Email',
+                        keyboardType: TextInputType.emailAddress
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFieldInput(
+                        controller: widget.passwordController,
+                        ispassword: !widget.passwordVisible,
+                        hintText: 'Password',
+                        keyboardType: TextInputType.visiblePassword,
+                        suffixIcon: IconButton(
+                          alignment: Alignment.bottomLeft,
+                          icon: widget.passwordVisible
+                              ? const Icon(Icons.visibility)
+                              : const Icon(Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              widget.passwordVisible = !widget.passwordVisible;
+                            });
+                          },
+                        ),
+                    ),
+                    const SizedBox(
+                        height: 28,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              const Color.fromARGB(218, 226, 37, 24),
+                            )
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            'Log In',
+                            style: TextStyle(
+                              color: Colors.white,
+                            )
+                          )
+                      )
+                    ),
+                    const SizedBox(
+                        height: 24
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Forgot Your Login Details?'
+                        ),
+                        Text(
+                          'Get Help Logging In',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ],
+                    ),
+                    Flexible(
+                      flex: 0,
+                      child: Container(),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Don't Have an Account",
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SignUp(
+                                    emailController: widget.emailController,
+                                    usernameController: widget.usernameController,
+                                    passwordController: widget.passwordController,
+                                    passwordConfirmController: widget.passwordConfirmController,
+                                  )),
+                                );
+                              },
+                              child: const Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(218, 226, 37, 24),
+                                ),
+                              )
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Row(
+                      children: [
+                        Flexible(
+                            child: Divider(
+                              thickness: 2,
+                            )
+                        ),
+                        Text(
+                          ' OR '
+                        ),
+                        Flexible(
+                            child: Divider(
+                              thickness: 2,
+                            )
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          'https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png',
+                          width: 40,
+                          height: 40,
+                        ),
+                        const Text(
+                          'Sign In with Google'
+                        )
+                      ],
+                    )
+                  ],
+                )
+              )
+            ],
+          )
+        )
     );
   }
 }
