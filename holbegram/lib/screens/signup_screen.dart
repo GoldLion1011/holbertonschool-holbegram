@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:holbegram/screens/auth/methods/user_storage.dart';
 
-class SignUp extends StatefulWidget { // ignore: must_be_immutable for now!
+class SignUp extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController usernameController;
   final TextEditingController passwordController;
@@ -8,21 +9,21 @@ class SignUp extends StatefulWidget { // ignore: must_be_immutable for now!
   bool passwordVisible;
 
   SignUp({
-    super.key,
-    required this.emailController, 
+    Key? key,
+    required this.emailController,
     required this.usernameController,
-    required this.passwordController, 
-    required this.passwordConfirmController, 
+    required this.passwordController,
+    required this.passwordConfirmController,
     this.passwordVisible = true,
-  });
+  }) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
   @override
-  void dispose(){
+  void dispose() {
     widget.emailController.dispose();
     widget.usernameController.dispose();
     widget.passwordController.dispose();
@@ -31,14 +32,40 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
-  initState() {
+  void initState() {
     widget.passwordVisible;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sign Up'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Add your UI elements for sign-up here, e.g., text fields, buttons, etc.
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddPicture(
+                      email: widget.emailController.text,
+                      username: widget.usernameController.text,
+                      password: widget.passwordController.text,
+                    ),
+                  ),
+                );
+              },
+              child: Text('Sign up'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
