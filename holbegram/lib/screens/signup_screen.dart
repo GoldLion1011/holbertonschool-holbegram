@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:holbegram/widgets/text_field.dart';
 
 class SignUp extends StatefulWidget { // ignore: must_be_immutable for now!
   final TextEditingController emailController;
